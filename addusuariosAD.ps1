@@ -1,13 +1,13 @@
-# Import active directory module for running AD cmdlets
+# importa o modulo do active diretory
 Import-Module activedirectory
   
-#Store the data from ADUsers.csv in the $ADUsers variable
+#Atribui a lista de usuarios na variavel $ADUusers com o formato csv
 $ADUsers = Import-Csv .\usuarios.csv
 
-#Loop through each row containing user details in the CSV file 
+#faz a interação da lista
 foreach ($User in $ADUsers)
 {
-	#Read user data from each field in each row and assign the data to a variable as below
+	#faz a isteração de cada campo de cada linha nas respetivas variaveis
 
 	$SamAccountName = $User.SamAccountName
 	$Name 	= $User.Name
@@ -20,17 +20,17 @@ foreach ($User in $ADUsers)
 
 
 
-	#Check to see if the user already exists in AD
+	#Verifica se o usuario já existe no AD
 	if (Get-ADUser -F {SamAccountName -eq $Name})
 	{
-		 #If user does exist, give a warning
-		 Write-Warning "A user account with username $Name already exist in Active Directory."
+		 #Se o usuario existir mostra uma mensagem para usu
+		 Write-Warning "Um usuario com a conta $Name já existe no AD";
 	}
 	else
 	{
-		#User does not exist then proceed to create the new user account
+		#Se o usuario não existir cria uma nova alocação de memoria para o respectivo usuario
 		
-        #Account will be created in the OU provided by the $OU variable read from the CSV file
+        #instacia com os respetivos atributos inerentes ao usuario
 		New-ADUser `
             -SamAccountName "$SamAccountName" `
             -UserPrincipalName "$UserPrincipalName" `
@@ -42,6 +42,7 @@ foreach ($User in $ADUsers)
             -EmailAddress "$EmailAddress" `
             -Department "$Department" `
             -Enabled $True `
-            -AccountPassword (ConvertTo-SecureString "Posredes123*" -AsPlainText -Force) 
+            #Converter o texto da senha simples em um padrão de hashing
+            -AccountPassword (ConvertTo-SecureString "suasenhaaqui*" -AsPlainText -Force) 
 	}
 }
