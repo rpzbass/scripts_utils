@@ -26,9 +26,9 @@ mv /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.bkp -v
 
 read -p "Informe a rede ex 192.168.0.0 : " rede
 
-read -p "Informe o inicio do range ex: 192.168.1.11: " inicio
+read -p "Informe o inicio do range ex: 192.168.0.11: " inicio
 
-read -p "Informe o final do range ex: 192.168.1.254: " fim
+read -p "Informe o final do range ex: 192.168.0.254: " fim
 
 read -p "Informe o nome de dominio: " dominio
 
