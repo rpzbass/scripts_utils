@@ -1,0 +1,12 @@
+Testar internet
+ ping www.google.com
+ Atualização do sistema Proxmox
+ /etc/apt/sources.list.d/
+ mv pve-enterprise.list para /root (move os arquivos para o /root)
+ Atualizar o arquivo sources.list (mirrors):
+ cd /etc/apt/sources.list
+ nano sources.list
+ https://pve.proxmox.com/wiki/Package_Repositories
+ Atualizar os pacotes:
+ apt update (atualização dos pacotes debian e proxmox)
+ apt dist-upgrade -y (instala versões mais recentes dos pacotes)
